@@ -48,7 +48,7 @@
   <script>
     // Initialize the map
     var platform = new H.service.Platform({
-      apikey: 'NEW'
+      apikey: 'nOs90Nl_EEDtnOiDCL1k97c3rkZjaZKBqibvMDBsSdk'
     });
 
     var defaultLayers = platform.createDefaultLayers();
