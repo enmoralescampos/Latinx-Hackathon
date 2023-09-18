@@ -22,6 +22,26 @@
       margin:1rem;
       box-sizing: border-box;
     }
+
+    /* Add sparkle animation to the button */
+    .sparkle {
+      position: relative;
+      overflow: hidden;
+      animation: sparkle 1s linear infinite;
+    }
+
+    @keyframes sparkle {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-3px);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
   </style>
    <!-- HERE Stuff -->
    <!-- https://developer.here.com/documentation/maps/3.1.45.1/dev_guide/topics/quick-start.html -->
@@ -42,7 +62,7 @@
   <div id="mapContainer"></div>
   <div id="userPanel" class="bg-light p-3">
     <input type="text" id="locationInput" class="form-control mb-2" placeholder="Enter a location">
-    <button id="searchButton" class="btn btn-primary">Search</button>
+    <button id="searchButton" class="btn btn-primary sparkle">Search</button>
   </div>
 
   <script>
