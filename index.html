@@ -17,7 +17,7 @@
       left: 0;
       width: 20%;
       min-width: 200px;
-      height: 200%;
+      height: 200%; /* Increased the height */
       padding: 20px;
       margin: 1rem;
       box-sizing: border-box;
@@ -64,7 +64,6 @@
     
     <!-- POIs Section -->
     <div id="poisSection" class="mt-3">
-      <h4>Nearby</h4>
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="evChargingCheckbox">
         <label class="form-check-label" for="evChargingCheckbox">EV Charging Stations</label>
@@ -166,10 +165,41 @@
           document.getElementById('locationsList').appendChild(listItem);
 
           var coordinates = item.position;
-          var poiMarker = new H.map.Marker(coordinates);
+
+          // Determine marker color based on category
+          var markerColor = getMarkerColor(category);
+          var poiMarker = new H.map.Marker(coordinates, { icon: createIcon(markerColor) });
           map.addObject(poiMarker);
+
+          // Match the marker to the list item
+          listItem.addEventListener('click', function() {
+            map.setCenter(coordinates);
+          });
         });
       }, onError);
+    }
+
+    // Define marker colors for different categories
+    function getMarkerColor(category) {
+      switch (category) {
+        case 'EV Charging Stations':
+          return 'blue';
+        case 'Restaurants':
+          return 'red';
+        case 'Shopping':
+          return 'green';
+        default:
+          return 'black';
+      }
+    }
+
+    // Create a colored marker icon
+    function createIcon(color) {
+      var svgMarkup = '<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">' +
+                      '<circle cx="12" cy="12" r="10" fill="' + color + '"/>' +
+                      '</svg>';
+
+      return new H.map.Icon(svgMarkup);
     }
   </script>
 </body>
